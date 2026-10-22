@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: product-ms
+#  datasource:
+#    url: jdbc:oracle:thin:@//localhost:1521/orclpdb
+#    username: ECOM
+#    password: ${DB_PASSWORD}
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.Oracle12cDialect
+
+  cloud:
+    config:
+      enabled: true
+  config:
+    import: optional:configserver:http://localhost:1111
+
+eureka:
+  client:
+    register-with-eureka: true
+server:
+  port: 8081
