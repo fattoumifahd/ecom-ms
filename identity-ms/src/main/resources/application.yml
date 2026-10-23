@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: identity-ms
+  jwt:
+    key: ba9162bc77e9370ea0f61f26314c6d8f7876ac0f8521025ce365958b8ed517cd
+    access-expiration: 900000
+    refresh-expiration: 86400000
+
