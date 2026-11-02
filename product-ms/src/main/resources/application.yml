@@ -1,17 +1,6 @@
 spring:
   application:
     name: productms
-#  datasource:
-#    url: jdbc:oracle:thin:@//localhost:1521/orclpdb
-#    username: ECOM
-#    password: ${DB_PASSWORD}
-#  jpa:
-#    hibernate:
-#      ddl-auto: create
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.Oracle12cDialect
-
   cloud:
     config:
       enabled: true
