@@ -1,6 +1,6 @@
 package com.example.identityms.payload.request;
 
-import jakarta.validation.Valid;
+
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

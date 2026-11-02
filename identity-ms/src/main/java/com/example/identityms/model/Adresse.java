@@ -21,6 +21,6 @@ public class Adresse {
     private String country;
     private String label;
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "_user_id")
+    private User _user;
 }

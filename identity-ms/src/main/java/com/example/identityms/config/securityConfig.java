@@ -16,8 +16,8 @@ public class securityConfig {
         return http.csrf( csrf -> csrf.disable())
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req ->
-                        req.anyRequest().authenticated()
-                                .requestMatchers("/api/user/register").permitAll()
+                        req.requestMatchers("/api/user/register").permitAll()
+                                .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
                 .build();

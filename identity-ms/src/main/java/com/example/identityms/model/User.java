@@ -19,6 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(name = "_user")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +33,7 @@ public class User implements UserDetails {
     private UserStatus status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    @OneToMany(mappedBy = "user", fetch= FetchType.LAZY)
+    @OneToMany(mappedBy = "_user", fetch= FetchType.LAZY)
     private List<Adresse> adresse;
 
     @Enumerated(EnumType.STRING)
