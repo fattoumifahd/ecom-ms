@@ -1,7 +1,6 @@
 package com.example.productms.services;
 
 import com.example.productms.exception.EntityNotFoundException;
-import com.example.productms.mappers.ProductMapper;
 import com.example.productms.models.ProductStatus;
 import com.example.productms.models.dtos.Product.CreateProductDTO;
 import com.example.productms.models.dtos.Product.UpdateProductDTO;
@@ -11,20 +10,20 @@ import com.example.productms.models.entity.ProductImage;
 import com.example.productms.repo.ProductRepo;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
 public class ProductServiceImpl implements IProductService{
-    private ProductMapper mapper;
+
     @Autowired
-    private ProductRepo  productRepo;
+    private ModelMapper mapper;
+    private final ProductRepo  productRepo;
 
 
     @Override
@@ -35,7 +34,7 @@ public class ProductServiceImpl implements IProductService{
     @Override
     public void updateProduct(Long id, UpdateProductDTO updateProductDTO) throws EntityNotFoundException {
         if(isProductExists(id)){
-            Product product = mapper.updateProductMapper(updateProductDTO);
+            Product product = mapper.map(updateProductDTO, Product.class);
             product.setUpdatedAt(LocalDateTime.now());
             productRepo.save(product);
         } else {
@@ -57,7 +56,7 @@ public class ProductServiceImpl implements IProductService{
     @Override
     public Product createProduct(CreateProductDTO productDTO) {
 
-        Product product = mapper.createProductMapper(productDTO);
+        Product product = mapper.map(productDTO, Product.class);
         product.setCreatedAt(LocalDateTime.now());
         product.setStatus(ProductStatus.ACTIVE);
         productRepo.save(product);
@@ -77,7 +76,7 @@ public class ProductServiceImpl implements IProductService{
     @Override
     public void addImage(Long productId, ProductImageDTO imageDTO) {
         Product product = productRepo.findById(productId).orElseThrow(() -> new EntityNotFoundException("Product not found"));
-        ProductImage productImage = mapper.modelMapper.map(imageDTO, ProductImage.class);
+        ProductImage productImage = mapper.map(imageDTO, ProductImage.class);
         product.addImage(productImage);
         productRepo.save(product);
 

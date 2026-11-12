@@ -3,9 +3,7 @@ package com.example.productms.models.entity;
 import com.example.productms.models.ProductStatus;
 import com.example.productms.models.dtos.ProductImage.ProductImageDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,8 +11,9 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-
+@Builder
+@Getter
+@Setter
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

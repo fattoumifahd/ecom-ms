@@ -5,25 +5,33 @@ import com.example.productms.models.dtos.Product.UpdateProductDTO;
 import com.example.productms.models.dtos.ProductImage.ProductImageDTO;
 import com.example.productms.models.entity.Product;
 import com.example.productms.services.ProductServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/api/product")
+@RefreshScope
+@RestController()
+@RequestMapping("/api/product")
+@Slf4j
 public class ProductController {
     @Autowired
     private ProductServiceImpl productService;
-
-    @GetMapping
-    public ResponseEntity<Product> getProduct(Long productId) {
+    @Value("${test.refresh}")
+    String test;
+    @GetMapping("/{productId}")
+    public ResponseEntity<Product> getProduct(@PathVariable Long productId) {
         return ResponseEntity.ok(productService.getProductById(productId));
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProducts() {
+        System.out.println(test);
         return ResponseEntity.ok(productService.getAllProducts());
     }
 

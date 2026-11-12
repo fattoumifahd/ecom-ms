@@ -1,12 +1,12 @@
 package com.example.productms.models.dtos.ProductImage;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Data
 @Getter
 @Setter
+@AllArgsConstructor
 public class ProductImageDTO {
     private String url;
     private String altText;

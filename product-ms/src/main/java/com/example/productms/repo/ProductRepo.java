@@ -5,6 +5,10 @@ import com.example.productms.models.entity.ProductImage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 @Repository
 public interface ProductRepo extends JpaRepository<Product, Long> {
+    Optional<Product> findProductByCreatedAt(LocalDateTime createdAt);
 }
